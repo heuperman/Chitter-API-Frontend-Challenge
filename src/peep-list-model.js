@@ -1,16 +1,10 @@
-function PeepsModel () {}
+function PeepsModel () {
+  this.peepsView = new PeepsView();
+}
 
 PeepsModel.prototype.fetchPeeps = function() {
-  return fetch('https://chitter-backend-api.herokuapp.com/peeps');
+  fetch('https://chitter-backend-api.herokuapp.com/peeps')
+    .then(response => response.json())
+    .then(peeps => this.peepsView.wrapInHTML(peeps))
+    .then(wrappedPeeps => document.getElementById('peep-list').innerHTML = wrappedPeeps);
 };
-
-// function foo() {
-//     // RETURN the promise
-//     return fetch("/echo/json").then(function(response){
-//         return response.json(); // process it inside the `then`
-//     });
-// }
-//
-// foo().then(function(response){
-//     // access the value inside the `then`
-// })
