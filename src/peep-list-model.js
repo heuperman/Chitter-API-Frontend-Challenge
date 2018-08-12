@@ -1,16 +1,6 @@
-function PeepsModel () {}
+function PeepsListModel () {}
 
-PeepsModel.prototype.fetchPeeps = function() {
-  return fetch('https://chitter-backend-api.herokuapp.com/peeps');
+PeepsListModel.prototype.fetchPeeps = function() {
+  return fetch('https://chitter-backend-api.herokuapp.com/peeps')
+    .then(response => response.json());
 };
-
-// function foo() {
-//     // RETURN the promise
-//     return fetch("/echo/json").then(function(response){
-//         return response.json(); // process it inside the `then`
-//     });
-// }
-//
-// foo().then(function(response){
-//     // access the value inside the `then`
-// })

@@ -1,15 +1,16 @@
 (function(exports) {
-  function Controller() {
-    this.peepsView = new PeepsView();
-    this.peepsModel = new PeepsModel();
+  function PeepsController(peepsListModel, peepsListView) {
+    this.peepsListModel = peepsListModel;
+    this.peepsListView = peepsListView;
   }
 
-  Controller.prototype.showPeepList = function () {
-    this.peepsModel.fetchPeeps()
-      .then(response => response.json())
-      .then(peeps => this.peepsView.wrapInHTML(peeps))
-      .then(wrappedPeeps => document.getElementById('peep-list').innerHTML = wrappedPeeps);
+  PeepsController.prototype.showPeepsList = function (object) {
+    this.peepsListModel.fetchPeeps()
+      .then(peeps => this.peepsListView.wrapInHTML(peeps))
+      .then(wrappedPeeps => object
+        .getElementById('peep-list')
+        .innerHTML = wrappedPeeps);
   };
 
-  exports.Controller = Controller;
+  exports.PeepsController = PeepsController;
 })(this);
