@@ -8,7 +8,7 @@
     this.peepsListModel.fetchPeeps()
       .then(peeps => this.peepsListView.wrapInHTML(peeps))
       .then(wrappedPeeps => object
-        .getElementById('peep-list')
+        .getElementById('peeps-list')
         .innerHTML = wrappedPeeps);
   };
 

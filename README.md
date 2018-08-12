@@ -16,6 +16,9 @@ Clone the repository:
 Install http-server:
  `$ npm install http-server -g`
 
+ Install dependencies:
+ `npm install`
+
 ## Usage
 
 In the main directory, start up the server:
@@ -30,7 +33,7 @@ To see code coverage: TBD
 
 ## Built with
 
-Jasmine & Karma -- as the testing frameworks  
+Jasmine, Karma & Cypress -- as the testing frameworks  
 
 ## User Stories
 

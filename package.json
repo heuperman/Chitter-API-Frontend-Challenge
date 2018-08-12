@@ -1,0 +1,25 @@
+{
+  "name": "chitter-api-frontend-challenge",
+  "version": "1.0.0",
+  "description": "Single Page frontend for Chitter",
+  "main": "karma.conf.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heuperman/Chitter-API-Frontend-Challenge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heuperman/Chitter-API-Frontend-Challenge/issues"
+  },
+  "homepage": "https://github.com/heuperman/Chitter-API-Frontend-Challenge#readme",
+  "dependencies": {
+    "cypress": "^3.0.3"
+  }
+}

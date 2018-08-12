@@ -5,10 +5,19 @@ describe('PeepsController', function() {
     var mockPeepsListView = function() {};
     var peepsController = new PeepsController(mockPeepsListModel, mockPeepsListView);
     var mockPromise = function() {};
-    var mockObject = { innerHTML: "" };
+    var mockWrappedPromise = function() {};
+    var mockObject = function() {};
+    var mockElement = { innerHTML: "" };
     mockPeepsListModel.fetchPeeps = function() { return mockPromise; };
     mockPeepsListView.wrapInHTML = function() {};
-    mockPromise.then = function() { return mockPromise; };
+    mockPromise.then = function(callback) {
+      callback('result');
+      return mockWrappedPromise;
+     };
+    mockWrappedPromise.then = function(callback) { callback('wrapped result'); };
+    mockObject.getElementById = function(argument) {
+       if (argument === 'peeps-list') { return mockElement; }
+     };
 
     it('calls the fetchPeeps function of the model',() => {
       spyOn(mockPeepsListModel, 'fetchPeeps').and.returnValue(mockPromise);
@@ -17,15 +26,16 @@ describe('PeepsController', function() {
     });
 
     it('calls the wrapinHTML function of the view with the result of the models fetch',() => {
-      var mockWrappedPromise = function() {};
-      mockWrappedPromise.then = function() {};
-      mockPromise.then = function(callback) {
-        callback('Peeps');
-        return mockWrappedPromise;
-       };
+
       spyOn(mockPeepsListView, 'wrapInHTML');
       peepsController.showPeepsList(mockObject);
-      expect(mockPeepsListView.wrapInHTML).toHaveBeenCalledWith('Peeps');
+      expect(mockPeepsListView.wrapInHTML).toHaveBeenCalledWith('result');
     });
+
+    it('inserts the wrapped result into the passed object at "peeps-list"',() => {
+      peepsController.showPeepsList(mockObject);
+      expect(mockElement.innerHTML).toBe('wrapped result');
+    });
+
   });
 });
